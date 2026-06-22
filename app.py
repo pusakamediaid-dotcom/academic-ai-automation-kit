@@ -1,76 +1,106 @@
 import gradio as gr
 import os
-from core.chunker import chunk_text
-from core.summarizer import AcademicSummarizer
-from core.insights import InsightExtractor
-from core.exporter import Exporter
+from core.pdf_reader import extract_text_from_pdf_bytes, clean_extracted_text
+from core.research_pipeline import ResearchPipeline
+from integrations.notion_client import NotionClient
+from integrations.pdfmonkey_client import PDFMonkeyClient
 
-# --- GLOBAL CACHE ---
-# Load models once at startup to avoid reloading on every request
-print("Initializing AI Models... Please wait.")
-HF_TOKEN = os.getenv("HF_TOKEN")
-try:
-    summarizer = AcademicSummarizer(hf_token=HF_TOKEN)
-    extractor = InsightExtractor(summarizer)
-    print("Models loaded successfully.")
-except Exception as e:
-    print(f"Critical Error during model loading: {e}")
-    summarizer = None
-    extractor = None
+# Init Pipeline & Clients
+pipeline = ResearchPipeline()
+notion = NotionClient()
+pdfmonkey = PDFMonkeyClient()
 
-def process_ai(text, mode):
-    if not text.strip():
-        return "Please enter some text.", ""
+def process_research_paper(pdf_file, text_input, mode, sync_notion, gen_pdf):
+    # 1. Text Extraction
+    source_type = "text"
+    raw_text = ""
     
-    if summarizer is None or extractor is None:
-        return "AI Models are not available. Please check the server logs.", ""
+    if pdf_file is not None:
+        source_type = "pdf"
+        try:
+            # Read bytes from the Gradio file path
+            with open(pdf_file.name, "rb") as f:
+                raw_text = extract_text_from_pdf_bytes(f.read())
+        except Exception as e:
+            return f"PDF Error: {e}", "", "❌", "❌", "", ""
+    elif text_input and text_input.strip():
+        raw_text = text_input
+    else:
+        return "Error: Please provide either a PDF or pasted text.", "", "❌", "❌", "", ""
 
-    # Chunking (Paragraph/Sentence aware)
-    chunks = chunk_text(text)
-    results = []
+    cleaned_text = clean_extracted_text(raw_text)
     
-    mode_map = {
-        "Short Summary": ("short", False),
-        "Detailed Summary": ("detailed", False),
-        "Key Insights": ("detailed", True),
-        "Literature Review Notes": ("detailed", False)
-    }
-    
-    mode_key, is_insight = mode_map[mode]
-    
-    for chunk in chunks:
-        if is_insight:
-            res = extractor.extract_insights(chunk)
+    # 2. AI Pipeline
+    try:
+        report = pipeline.run(cleaned_text, source_type, mode=mode)
+    except Exception as e:
+        return f"AI Pipeline Error: {e}", "", "❌", "❌", "", ""
+
+    # 3. Notion Sync
+    notion_status = "Skipped"
+    notion_url = ""
+    if sync_notion:
+        res = notion.sync_to_notion_database(report)
+        if res["ok"]:
+            notion_status = "✅ Synced"
+            notion_url = res.get("url", "")
         else:
-            res = summarizer.summarize(chunk, mode=mode_key)
-        results.append(res)
-    
-    final_text = "\n\n".join(results)
-    markdown = Exporter.to_markdown("Research Result", final_text, mode)
-    json_res = Exporter.to_json("Research Result", final_text, mode)
-    
-    return markdown, json_res
+            notion_status = f"❌ {res['message']}"
 
-# Gradio Interface
-with gr.Blocks(title="Academic AI Automation Kit") as demo:
-    gr.Markdown("# 🎓 Academic AI Automation Kit")
-    gr.Markdown("Transform academic text into structured summaries and insights using AI.")
+    # 4. PDF Report
+    pdf_status = "Skipped"
+    pdf_url = ""
+    if gen_pdf:
+        res = pdfmonkey.generate_pdf_report(report)
+        if res["ok"]:
+            pdf_status = "✅ Generated"
+            pdf_url = pdfmonkey.get_download_url(res.get("document_id", ""))
+        else:
+            pdf_status = f"❌ {res['message']}"
+
+    return (
+        report["markdown_report"], 
+        report["json_report"], 
+        notion_status, 
+        notion_url, 
+        pdf_status, 
+        pdf_url
+    )
+
+# UI Layout
+with gr.Blocks(title="Academic Research Automation OS") as demo:
+    gr.Markdown("# 🎓 Academic Research Automation OS")
+    gr.Markdown("The professional pipeline for transforming academic PDFs into structured research vaults.")
     
     with gr.Row():
         with gr.Column():
-            input_text = gr.Textbox(label="Academic Text", lines=10, placeholder="Paste your paper abstract or section here...")
+            pdf_upload = gr.File(label="Upload Academic PDF", file_types=[".pdf"])
+            text_input = gr.Textbox(label="Or Paste Text", lines=8, placeholder="Paste paper text here...")
             mode_dropdown = gr.Dropdown(
                 choices=["Short Summary", "Detailed Summary", "Key Insights", "Literature Review Notes"], 
-                value="Short Summary", 
-                label="Processing Mode"
+                value="Detailed Summary", 
+                label="AI Processing Mode"
             )
-            submit_btn = gr.Button("Process Text", variant="primary")
+            with gr.Row():
+                sync_notion = gr.Checkbox(label="Sync to Notion")
+                gen_pdf = gr.Checkbox(label="Generate PDF Report")
+            
+            submit_btn = gr.Button("🚀 Process Research Paper", variant="primary")
         
         with gr.Column():
-            output_md = gr.Markdown(label="Markdown Result")
-            output_json = gr.Code(label="JSON Result", language="json")
+            output_md = gr.Markdown(label="AI Analysis Result")
+            output_json = gr.Code(label="JSON Data", language="json")
+            with gr.Row():
+                notion_status = gr.Textbox(label="Notion Status", interactive=False)
+                pdf_status = gr.Textbox(label="PDF Report Status", interactive=False)
+            notion_url = gr.Textbox(label="Notion Page URL", interactive=False)
+            pdf_url = gr.Textbox(label="PDF Download URL", interactive=False)
             
-    submit_btn.click(fn=process_ai, inputs=[input_text, mode_dropdown], outputs=[output_md, output_json])
+    submit_btn.click(
+        fn=process_research_paper, 
+        inputs=[pdf_upload, text_input, mode_dropdown, sync_notion, gen_pdf], 
+        outputs=[output_md, output_json, notion_status, notion_url, pdf_status, pdf_url]
+    )
 
 if __name__ == "__main__":
     demo.launch()
