@@ -1,0 +1,16 @@
+{
+    "template_id": "sample_template_id",
+    "payload": {
+        "title": "AI in Urban Planning: A Coastal City Study",
+        "summary_short": "AI-driven urban planning reduces peak heat by 15%.",
+        "summary_detailed": "The study analyzes coastal urbanization stressors...",
+        "core_thesis": "AI-driven urban planning can significantly mitigate urban heat in coastal cities.",
+        "methodology": "Comparative study of 10 cities using satellite imagery and AI heat mapping.",
+        "main_findings": "15% reduction in peak heat using AI-optimized green corridors.",
+        "research_gap": "Lack of comprehensive data for low-income suburbs.",
+        "practical_implication": "Recommendation of a hybrid AI-community planning approach.",
+        "literature_review_notes": "Provides empirical evidence for climate-resilient design.",
+        "processed_at": "2026-06-22",
+        "model": "facebook/bart-large-cnn"
+    }
+}

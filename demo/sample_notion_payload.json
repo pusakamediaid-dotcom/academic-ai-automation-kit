@@ -1,0 +1,11 @@
+{
+    "parent": { "database_id": "sample_db_id" },
+    "properties": {
+        "Title": { "title": [{ "text": { "content": "AI in Urban Planning: A Coastal City Study" } }] },
+        "Source Type": { "select": { "name": "pdf" } },
+        "Summary": { "rich_text": [{ "text": { "content": "AI-driven urban planning reduces peak heat by 15%." } }] },
+        "Main Finding": { "rich_text": [{ "text": { "content": "15% reduction in peak heat via green corridors." } }] },
+        "Research Gap": { "rich_text": [{ "text": { "content": "Missing data for low-income suburbs." } }] },
+        "Processed At": { "date": { "start": "2026-06-22" } }
+    }
+}
