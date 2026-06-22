@@ -4,3 +4,6 @@ sentencepiece
 gradio>=4.44.0
 pydantic
 pytest
+requests
+python-dotenv
+pypdf
