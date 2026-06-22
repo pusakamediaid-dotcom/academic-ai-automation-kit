@@ -1,0 +1,7 @@
+This is a sample academic text about the impact of Climate Change on Urban Planning.
+
+Urban areas are increasingly vulnerable to the effects of climate change, particularly the increase in extreme heat events and flash flooding. This study examines the resilience of five coastal cities in Southeast Asia over a ten-year period (2015-2025). 
+
+The methodology involved a mixed-methods approach, combining satellite imagery analysis of heat islands with qualitative interviews from city planners. The results indicate that cities with 'green-blue infrastructure' (parks and canals) had a 2.5 degree Celsius lower peak temperature compared to those with high concrete density.
+
+However, a significant research gap remains in how these infrastructure projects affect lower-income neighborhoods, as most data was collected from central business districts. The practical implication is that city planners must prioritize equitable distribution of green spaces to ensure climate resilience for all citizens.
