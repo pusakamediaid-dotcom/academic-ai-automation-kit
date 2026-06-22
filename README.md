@@ -1,40 +1,48 @@
-# Academic AI Automation Kit 🎓
+# Academic AI Automation Kit — Research Automation OS
 
-The **Academic AI Automation Kit** is a tool designed for researchers and students to streamline the process of reading and synthesizing academic literature. 
+Turn academic PDFs or pasted text into professional summaries, structured insights, Notion research pages, and PDF reports automatically.
 
-Instead of reading every word of a long paper, use this kit to extract the core thesis and findings more efficiently.
+## 🚀 What it Does
+The Research Automation OS is a high-performance pipeline that replaces manual research skimming. It extracts text from PDFs, processes it using SOTA Transformers, and syncs the results directly to your knowledge management system.
 
-## 🚀 Features
-- **Paragraph-Aware Chunking**: Handles long texts by splitting them at natural breaks (paragraphs/sentences).
-- **Multi-Mode Processing**: 
-  - `Short Summary`: For quick scanning.
-  - `Detailed Summary`: For deeper understanding.
-  - `Key Insights`: Structured bullet points (Thesis, Methodology, Findings, etc.).
-  - `Literature Review Notes`: Formatted for research databases.
-- **Flexible Interfaces**: Run it via Command Line, a web-based Gradio UI, or Google Colab.
-- **Structured Output**: Export results as Markdown or JSON.
+### The Pipeline:
+`PDF/Text` $\rightarrow$ `Clean & Chunk` $\rightarrow$ `AI Summarization` $\rightarrow$ `Insight Extraction` $\rightarrow$ `Notion Sync` $\rightarrow$ `PDF Report`
 
-## 🛠️ Quickstart
+## 🛠️ Feature Table
+| Feature | Description | Integration |
+| :--- | :--- | :--- |
+| **Auto PDF Reader** | Extracts and cleans text from academic PDFs. | `pypdf` |
+| **AI Engine** | Detailed summaries and structured insights. | `Hugging Face` |
+| **Research Vault** | Automatic sync to a structured Notion database. | `Notion API` |
+| **Report Gen** | One-click professional PDF report generation. | `PDFMonkey` |
+| **Multi-Interface** | Use via Web UI, CLI, or Google Colab. | `Gradio` |
 
-### 1. Local Installation
-```bash
-git clone https://github.com/pusakamediaid-dotcom/academic-ai-automation-kit.git
-cd academic-ai-automation-kit
-pip install -r requirements.txt
-```
+## 🏁 Quickstart
 
-### 2. Run the Web UI (Recommended)
-```bash
-python app.py
-```
+### Option A: Google Colab (Fastest)
+1. Open `notebooks/Academic_AI_Automation_Kit_Colab.ipynb`.
+2. Run all cells.
+3. Open the Gradio link and upload your PDF.
 
-### 3. Google Colab (Zero Setup)
-Open the notebook in `notebooks/Academic_AI_Automation_Kit_Colab.ipynb` and run all cells.
+### Option B: Local Installation
+1. `git clone https://github.com/pusakamediaid-dotcom/academic-ai-automation-kit.git`
+2. `pip install -r requirements.txt`
+3. `python app.py`
 
-## ⚠️ Limitations & Disclaimer
-- **AI Hallucinations**: Always verify critical facts and citations against the original source.
-- **Text-Based**: This tool processes pasted text. It does not currently support direct PDF uploads.
-- **Academic Integrity**: Intended as a research assistant, not a replacement for critical reading.
+## 🔑 Environment Variables
+Create a `.env` file based on `.env.example`:
+- `HF_TOKEN`: Your Hugging Face token.
+- `NOTION_API_KEY`: Your Notion internal integration token.
+- `NOTION_DATABASE_ID`: The ID of your research database.
+- `PDFMONKEY_API_KEY`: Your PDFMonkey API key.
+- `PDFMONKEY_TEMPLATE_ID`: Your report template ID.
 
-## 📜 License
-Distributed under the MIT License.
+## 📖 Setup Guides
+- **Notion**: See `docs/NOTION_SETUP.md`
+- **PDFMonkey**: See `docs/PDFMONKEY_SETUP.md`
+- **HF**: See `docs/HUGGINGFACE_SETUP.md`
+
+## ⚠️ Limitations & Integrity
+- **Verification**: AI can hallucinate. Always cross-reference the generated summaries with the original paper.
+- **PDF Complexity**: Multi-column PDFs or scanned images (OCR) may require manual text cleaning.
+- **Academic Integrity**: This tool is a research *assistant*. It should not be used to bypass the critical reading process.
