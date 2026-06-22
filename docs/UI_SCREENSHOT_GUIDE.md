@@ -1,21 +1,24 @@
-# 🖼️ UI Screenshot Guide for Gumroad
+# 🛠️ UI Screenshot Guide
 
-Since this is a software tool, your Gumroad listing will convert better with visual proof. Please take the following screenshots after running `python app.py`:
+To maintain a professional look, follow these guidelines when taking real screenshots of the app:
 
-### 1. The Main Dashboard (Hero Image)
-- **What to capture**: The full Gradio interface.
-- **Pro Tip**: Paste a sample text and show the "Process Text" button highlighted.
-- **Caption**: "Clean, intuitive interface for fast academic processing."
+### 1. Hero Screenshot
+- Run `app.py`.
+- Use a clean browser window.
+- Capture the full dashboard with a sample result visible.
 
-### 2. The "Key Insights" Mode (Value Proof)
-- **What to capture**: The output area when "Key Insights" mode is selected.
-- **Pro Tip**: Ensure the bullet points (Thesis, Methodology, etc.) are clearly visible.
-- **Caption**: "Get structured research insights in a click."
+### 2. Dashboard Detail
+- Capture the "Upload PDF" and "Paste Text" area.
+- Ensure the dropdown "Processing Mode" is visible.
 
-### 3. The JSON Output (Technical Proof)
-- **What to capture**: The JSON code block at the bottom.
-- **Caption**: "Developer-friendly exports for your data pipeline."
+### 3. Output Result
+- Focus on the "Key Insights" section.
+- Ensure the bullet points (Core Thesis, Methodology, etc.) are clear.
 
-### 4. The Google Colab View (Accessibility Proof)
-- **What to capture**: The Colab notebook with the Gradio link active.
-- **Caption**: "Zero setup. Run it directly in your browser via Google Colab."
+### 4. Notion Preview
+- Sync a paper to your actual Notion database.
+- Capture the Notion page, showing the properties and the content blocks.
+
+### 5. PDF Report Preview
+- Generate a report via PDFMonkey.
+- Open the PDF in a browser and capture the first page.
