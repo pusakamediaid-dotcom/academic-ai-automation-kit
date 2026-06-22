@@ -5,18 +5,27 @@ from core.summarizer import AcademicSummarizer
 from core.insights import InsightExtractor
 from core.exporter import Exporter
 
+# --- GLOBAL CACHE ---
+# Load models once at startup to avoid reloading on every request
+print("Initializing AI Models... Please wait.")
+HF_TOKEN = os.getenv("HF_TOKEN")
+try:
+    summarizer = AcademicSummarizer(hf_token=HF_TOKEN)
+    extractor = InsightExtractor(summarizer)
+    print("Models loaded successfully.")
+except Exception as e:
+    print(f"Critical Error during model loading: {e}")
+    summarizer = None
+    extractor = None
+
 def process_ai(text, mode):
     if not text.strip():
         return "Please enter some text.", ""
     
-    token = os.getenv("HF_TOKEN")
-    try:
-        summarizer = AcademicSummarizer(hf_token=token)
-        extractor = InsightExtractor(summarizer)
-    except Exception as e:
-        return f"Error loading AI model: {e}", ""
+    if summarizer is None or extractor is None:
+        return "AI Models are not available. Please check the server logs.", ""
 
-    # Chunking
+    # Chunking (Paragraph/Sentence aware)
     chunks = chunk_text(text)
     results = []
     
@@ -45,7 +54,7 @@ def process_ai(text, mode):
 # Gradio Interface
 with gr.Blocks(title="Academic AI Automation Kit") as demo:
     gr.Markdown("# 🎓 Academic AI Automation Kit")
-    gr.Markdown("Transform long academic papers into structured summaries and insights using SOTA AI models.")
+    gr.Markdown("Transform academic text into structured summaries and insights using AI.")
     
     with gr.Row():
         with gr.Column():
