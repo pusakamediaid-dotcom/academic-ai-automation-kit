@@ -1,39 +1,34 @@
-# 💰 GUMROAD LISTING DATA
+# 💰 GUMROAD LISTING DATA (BETA VERSION)
 
-**Product Title:** 🎓 Academic AI Automation Kit: SOTA Research Summarizer
+**Product Title:** 🎓 Academic AI Automation Kit: Research Summarizer
 
-**Subtitle:** Stop drowning in PDFs. Transform long academic papers into structured insights in seconds.
+**Subtitle:** Simplify your literature review. Transform academic text into structured insights.
 
 **Description:**
-Reading 10+ papers a week is exhausting. The Academic AI Automation Kit is a professional-grade framework that bridges the gap between raw academic text and a structured research vault.
+Reading dozens of papers is time-consuming. The Academic AI Automation Kit is a helper tool that lets you quickly synthesize academic text using AI.
 
-Using state-of-the-art (SOTA) AI models from Hugging Face, this kit allows you to:
-- Summarize complex papers without losing core meaning.
-- Extract key insights for literature reviews.
-- Automate the "first pass" of your research process.
-- Export directly to Notion, Obsidian, or JSON.
+**Key Features:**
+- **Structured Summary**: Choose between short, detailed, or literature-review formats.
+- **Insight Extraction**: Automatically formats findings into Thesis, Methodology, and Research Gaps.
+- **Smart Processing**: Paragraph-aware chunking to handle long sections of text.
+- **Zero-Setup Option**: Includes a Google Colab notebook for instant use in your browser.
+- **Notion-Ready**: Exports to Markdown for easy copy-pasting into your research vault.
 
 **What's Included:**
-✅ **The Automation Engine**: Python-based toolkit with smart chunking and multi-mode processing.
-✅ **Web Interface**: Professional Gradio UI for a seamless experience.
-✅ **Zero-Setup Access**: Google Colab notebook for instant use.
-✅ **Complete Documentation**: Installation guides, user manuals, and troubleshooting.
-✅ **Research Prompt Guide**: Optimized prompts for academic synthesis.
+✅ **Automation Toolkit**: Python-based tool with Gradio Web UI.
+✅ **Google Colab Access**: No installation required.
+✅ **Setup Guides**: Step-by-step instructions for all users.
+✅ **Example Library**: Sample inputs and outputs.
 
 **Who this is for:**
-- PhD & Masters Students.
-- Undergraduate Researchers.
-- Academic Professors & Professors.
-- Market Researchers.
+- Students and early-career researchers.
+- Anyone managing a large volume of academic reading.
 
 **What it does NOT do:**
-- It does not "write" your thesis for you (use it as an assistant, not a ghostwriter).
-- It is not a replacement for critical reading.
+- It does NOT support direct PDF uploads (you must paste the text).
+- It is NOT a replacement for reading the full paper for critical analysis.
 
-**Suggested Price:** $29 - $49
+**Suggested Price (Beta):** $7 – $15
 
 **Gumroad Tags:** 
 `Academic`, `AI`, `Research`, `Productivity`, `Notion`, `Student`, `Thesis`, `Automation`
-
-**Support Note:**
-Updates are provided via GitHub. Support available via email.
