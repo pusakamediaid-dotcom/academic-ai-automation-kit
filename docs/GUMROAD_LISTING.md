@@ -1,34 +1,37 @@
-# 💰 GUMROAD LISTING DATA (BETA VERSION)
+# 💰 GUMROAD LISTING DATA (PROFESSIONAL OS)
 
-**Product Title:** 🎓 Academic AI Automation Kit: Research Summarizer
+**Product Title:** Academic Research Automation OS
 
-**Subtitle:** Simplify your literature review. Transform academic text into structured insights.
+**Subtitle:** From PDF to Research Vault in One Click.
 
 **Description:**
-Reading dozens of papers is time-consuming. The Academic AI Automation Kit is a helper tool that lets you quickly synthesize academic text using AI.
+Stop wasting hours on the first pass of academic reading. The Research Automation OS is a professional-grade pipeline that transforms raw PDFs into structured research assets.
 
-**Key Features:**
-- **Structured Summary**: Choose between short, detailed, or literature-review formats.
-- **Insight Extraction**: Automatically formats findings into Thesis, Methodology, and Research Gaps.
-- **Smart Processing**: Paragraph-aware chunking to handle long sections of text.
-- **Zero-Setup Option**: Includes a Google Colab notebook for instant use in your browser.
-- **Notion-Ready**: Exports to Markdown for easy copy-pasting into your research vault.
+**The Professional Workflow:**
+1. **Ingest**: Upload any academic PDF or paste text.
+2. **Process**: AI-powered summarization and structured insight extraction (Thesis, Methodology, Gaps).
+3. **Sync**: Automatic synchronization to your Notion Research Database.
+4. **Export**: Generate professional PDF reports for your team or supervisor.
 
 **What's Included:**
-✅ **Automation Toolkit**: Python-based tool with Gradio Web UI.
-✅ **Google Colab Access**: No installation required.
-✅ **Setup Guides**: Step-by-step instructions for all users.
-✅ **Example Library**: Sample inputs and outputs.
+✅ **The Automation Engine**: Full Python toolkit with PDF parsing and AI orchestration.
+✅ **Professional Web UI**: Gradio-based dashboard for seamless research.
+✅ **Notion Integration**: Auto-sync to your research vault.
+✅ **PDFMonkey Integration**: One-click PDF report generation.
+✅ **Google Colab Access**: Zero-setup cloud environment.
+✅ **Comprehensive Documentation**: Setup guides for all APIs.
 
 **Who this is for:**
-- Students and early-career researchers.
-- Anyone managing a large volume of academic reading.
+- PhD and Masters students.
+- Academic researchers and Professors.
+- Market analysts and R&D professionals.
 
-**What it does NOT do:**
-- It does NOT support direct PDF uploads (you must paste the text).
-- It is NOT a replacement for reading the full paper for critical analysis.
+**Requirements:**
+- Notion API Key (for Notion sync).
+- PDFMonkey API Key (for PDF reports).
+- Hugging Face Token (recommended for stability).
 
-**Suggested Price (Beta):** $7 – $15
+**Suggested Price:** $19 – $39
 
 **Gumroad Tags:** 
-`Academic`, `AI`, `Research`, `Productivity`, `Notion`, `Student`, `Thesis`, `Automation`
+`Academic`, `Research`, `Automation`, `Notion`, `AI`, `Productivity`, `PDF`, `Thesis`
